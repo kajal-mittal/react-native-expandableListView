@@ -6,12 +6,11 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, SectionList, TouchableOpacity, Alert } from 'react-native';
-
-const instructions = Platform.select({
-	ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-	android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu'
-});
-
+const DATA = [
+	{ title: 'Title1', data: ['item1', 'item2'] },
+	{ title: 'Title2', data: ['item3', 'item4'] },
+	{ title: 'Title3', data: ['item5', 'item6'] }
+];
 type Props = {};
 export default class App extends Component<Props> {
 	constructor(props) {
@@ -49,40 +48,14 @@ export default class App extends Component<Props> {
 			<View style={styles.container}>
 				<SectionList
 					renderItem={({ item }) => (
-						<View>
-							{this.state.showItems && (
-								<Text
-									style={{
-										fontSize: 15,
-										padding: 5,
-										color: '#000',
-										backgroundColor: '#F5F5F5'
-									}}
-								>
-									{'item'}
-								</Text>
-							)}
-						</View>
+						<View>{this.state.showItems && <Text style={styles.itemStyle}>{'item'}</Text>}</View>
 					)}
 					renderSectionHeader={({ section: { title } }) => (
 						<TouchableOpacity onPress={this.getSectionListItem.bind(this, title)}>
-							<Text
-								style={{
-									backgroundColor: '#CDDC39',
-									fontSize: 20,
-									padding: 5,
-									color: '#fff'
-								}}
-							>
-								{title}
-							</Text>
+							<Text style={styles.sectionHeaderStyle}>{title}</Text>
 						</TouchableOpacity>
 					)}
-					sections={[
-						{ title: 'Title1', data: ['item1', 'item2'] },
-						{ title: 'Title2', data: ['item3', 'item4'] },
-						{ title: 'Title3', data: ['item5', 'item6'] }
-					]}
+					sections={DATA}
 					keyExtractor={(item, index) => item + index}
 				/>
 			</View>
@@ -96,14 +69,16 @@ const styles = StyleSheet.create({
 		marginTop: 100,
 		backgroundColor: '#F5FCFF'
 	},
-	welcome: {
+	sectionHeaderStyle: {
+		backgroundColor: '#CDDC39',
 		fontSize: 20,
-		textAlign: 'center',
-		margin: 10
+		padding: 5,
+		color: '#fff'
 	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5
+	itemStyle: {
+		fontSize: 15,
+		padding: 5,
+		color: '#000',
+		backgroundColor: '#F5F5F5'
 	}
 });
