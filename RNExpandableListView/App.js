@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, SectionList, TouchableOpacity, Alert } from 'react-native';
+import ItemCellRoot from './ItemCellRoot';
 const DATA = [
 	{ title: 'Title1', index: 1, data: ['item1', 'item2'] },
 	{ title: 'Title2', index: 2, data: ['item3', 'item4'] },
@@ -18,34 +19,17 @@ export default class App extends Component<Props> {
 
 		this.state = {
 			id: 0,
-			expand: false,
-			collapse: false
+			expand: false
 		};
 	}
-	_renderItem() {
-		console.warn('_renderItem' + this.state.showItems);
-		<View>
-			{this.state.showItems && (
-				<Text
-					key={index}
-					style={{
-						fontSize: 15,
-						padding: 5,
-						color: '#000',
-						backgroundColor: '#F5F5F5'
-					}}
-				>
-					{'item'}
-				</Text>
-			)}
-		</View>;
-	}
+
 	getSectionListItem = (title, index) => {
 		if (this.state.expand && this.state.id === index) {
 			this.setState({ expand: false });
 		} else {
 			this.setState({ expand: true });
 		}
+		//this.setState({ expand: true });
 		this.setState({ id: index });
 		console.warn(this.state.id);
 	};
@@ -53,21 +37,37 @@ export default class App extends Component<Props> {
 	render() {
 		return (
 			<View style={styles.container}>
-				<SectionList
-					renderItem={({ item, section: { title, index } }) => (
-						<View>
-							{this.state.expand &&
-								this.state.id === index && <Text style={styles.itemStyle}>{item + ' ' + index + title}</Text>}
-						</View>
-					)}
-					renderSectionHeader={({ section: { title, index } }) => (
-						<TouchableOpacity onPress={this.getSectionListItem.bind(this, title, index)}>
-							<Text style={styles.sectionHeaderStyle}>{title}</Text>
-						</TouchableOpacity>
-					)}
-					sections={DATA}
-					keyExtractor={(item, index) => item + index}
-				/>
+				<View style={{ height: '50%' }}>
+					<SectionList
+						renderItem={({ item, section: { title, index } }) => (
+							<View>
+								{this.state.expand &&
+									this.state.id === index && <Text style={styles.itemStyle}>{item + ' ' + index + title}</Text>}
+							</View>
+						)}
+						renderSectionHeader={({ section: { title, index } }) => (
+							<TouchableOpacity onPress={this.getSectionListItem.bind(this, title, index)}>
+								<Text style={styles.sectionHeaderStyle}>{title}</Text>
+							</TouchableOpacity>
+						)}
+						sections={DATA}
+						keyExtractor={(item, index) => item + index}
+					/>
+				</View>
+				<View style={{ height: '50%' }}>
+					<SectionList
+						renderItem={({ item, section: { title, index } }) => (
+							<ItemCellRoot data={item} sections={title} id={this.state.id} index={index} value={this.state.expand} />
+						)}
+						renderSectionHeader={({ section: { title, index } }) => (
+							<TouchableOpacity onPress={this.getSectionListItem.bind(this, title, index)}>
+								<Text style={styles.sectionHeaderStyle}>{title}</Text>
+							</TouchableOpacity>
+						)}
+						sections={DATA}
+						keyExtractor={(item, index) => item + index}
+					/>
+				</View>
 			</View>
 		);
 	}
@@ -76,7 +76,7 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		marginTop: 100,
+		marginTop: 60,
 		backgroundColor: '#F5FCFF'
 	},
 	sectionHeaderStyle: {
