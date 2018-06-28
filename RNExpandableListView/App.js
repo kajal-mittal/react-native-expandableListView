@@ -7,9 +7,9 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, SectionList, TouchableOpacity, Alert } from 'react-native';
 const DATA = [
-	{ title: 'Title1', data: ['item1', 'item2'] },
-	{ title: 'Title2', data: ['item3', 'item4'] },
-	{ title: 'Title3', data: ['item5', 'item6'] }
+	{ title: 'Title1', index: 1, data: ['item1', 'item2'] },
+	{ title: 'Title2', index: 2, data: ['item3', 'item4'] },
+	{ title: 'Title3', index: 3, data: ['item5', 'item6'] }
 ];
 type Props = {};
 export default class App extends Component<Props> {
@@ -17,6 +17,7 @@ export default class App extends Component<Props> {
 		super(props);
 
 		this.state = {
+			id: 0,
 			showItems: false
 		};
 	}
@@ -38,20 +39,24 @@ export default class App extends Component<Props> {
 			)}
 		</View>;
 	}
-	getSectionListItem = title => {
+	getSectionListItem = (title, index) => {
+		this.setState({ id: index });
 		this.setState({ showItems: true });
-		Alert.alert(title);
+		console.warn(this.state.id);
 	};
 
 	render() {
 		return (
 			<View style={styles.container}>
 				<SectionList
-					renderItem={({ item }) => (
-						<View>{this.state.showItems && <Text style={styles.itemStyle}>{'item'}</Text>}</View>
+					renderItem={({ item, section: { title, index } }) => (
+						<View>
+							{this.state.showItems &&
+								this.state.id === index && <Text style={styles.itemStyle}>{item + ' ' + index + title}</Text>}
+						</View>
 					)}
-					renderSectionHeader={({ section: { title } }) => (
-						<TouchableOpacity onPress={this.getSectionListItem.bind(this, title)}>
+					renderSectionHeader={({ section: { title, index } }) => (
+						<TouchableOpacity onPress={this.getSectionListItem.bind(this, title, index)}>
 							<Text style={styles.sectionHeaderStyle}>{title}</Text>
 						</TouchableOpacity>
 					)}
