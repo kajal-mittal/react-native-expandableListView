@@ -18,7 +18,8 @@ export default class App extends Component<Props> {
 
 		this.state = {
 			id: 0,
-			showItems: false
+			expand: false,
+			collapse: false
 		};
 	}
 	_renderItem() {
@@ -40,8 +41,12 @@ export default class App extends Component<Props> {
 		</View>;
 	}
 	getSectionListItem = (title, index) => {
+		if (this.state.expand && this.state.id === index) {
+			this.setState({ expand: false });
+		} else {
+			this.setState({ expand: true });
+		}
 		this.setState({ id: index });
-		this.setState({ showItems: true });
 		console.warn(this.state.id);
 	};
 
@@ -51,7 +56,7 @@ export default class App extends Component<Props> {
 				<SectionList
 					renderItem={({ item, section: { title, index } }) => (
 						<View>
-							{this.state.showItems &&
+							{this.state.expand &&
 								this.state.id === index && <Text style={styles.itemStyle}>{item + ' ' + index + title}</Text>}
 						</View>
 					)}
