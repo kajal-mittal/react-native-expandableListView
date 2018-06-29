@@ -29,7 +29,6 @@ export default class App extends Component<Props> {
 		} else {
 			this.setState({ expand: true });
 		}
-		//this.setState({ expand: true });
 		this.setState({ id: index });
 		console.warn(this.state.id);
 	};
@@ -57,13 +56,9 @@ export default class App extends Component<Props> {
 				<View style={{ height: '50%' }}>
 					<SectionList
 						renderItem={({ item, section: { title, index } }) => (
-							<ItemCellRoot data={item} sections={title} id={this.state.id} index={index} value={this.state.expand} />
+							<ItemCellRoot data={item} sections={title} index={index} />
 						)}
-						renderSectionHeader={({ section: { title, index } }) => (
-							<TouchableOpacity onPress={this.getSectionListItem.bind(this, title, index)}>
-								<Text style={styles.sectionHeaderStyle}>{title}</Text>
-							</TouchableOpacity>
-						)}
+						renderSectionHeader={({ item, section: { title, index } }) => <View />}
 						sections={DATA}
 						keyExtractor={(item, index) => item + index}
 					/>
