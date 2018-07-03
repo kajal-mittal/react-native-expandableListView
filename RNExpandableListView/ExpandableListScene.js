@@ -22,10 +22,10 @@ export default class ExpandableListScene extends Component {
 	renderList = () => {
 		let list = [];
 
-		for (let i = 0; i < DATA.length; i++) {
+		for (let d of DATA) {
 			list.push(
-				<ExpandableListView title={DATA[i].title}>
-					<Text>{DATA[i].description}</Text>
+				<ExpandableListView title={d.title}>
+					<Text>{d.description}</Text>
 				</ExpandableListView>
 			);
 		}

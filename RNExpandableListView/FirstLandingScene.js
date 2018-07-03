@@ -8,6 +8,15 @@ export default class FirstLandingScene extends Component {
 				<TouchableOpacity
 					style={{ backgroundColor: 'blue' }}
 					onPress={() => {
+						this.props.navigation.navigate('ListViewScene');
+					}}
+				>
+					<Text style={{ backgroundColor: 'blue', color: 'white', padding: 10 }}>ListView</Text>
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					style={{ backgroundColor: 'blue' }}
+					onPress={() => {
 						this.props.navigation.navigate('App');
 					}}
 				>

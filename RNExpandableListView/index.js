@@ -4,11 +4,13 @@ import { StackNavigator } from 'react-navigation';
 import FirstLandingScene from './FirstLandingScene';
 import App from './App';
 import ExpandableListScene from './ExpandableListScene';
+import ListViewScene from './ListViewScene';
 
 const AppFlow = StackNavigator({
 	FirstLandingScene: { screen: FirstLandingScene },
 	App: { screen: App },
-	ExpandableListScene: { screen: ExpandableListScene }
+	ExpandableListScene: { screen: ExpandableListScene },
+	ListViewScene: { screen: ListViewScene }
 });
 export default class FirstScreen extends Component {
 	render() {
