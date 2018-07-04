@@ -1,17 +1,27 @@
-import React, { Component, StyleSheet, Text, View, Image, TouchableHighlight, Animated } from 'react-native'; //Step 1
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Image, TouchableHighlight, Animated } from 'react-native'; //Step 1
 
-class ExpandableListView extends Component {
+export default class ExpandableListView extends Component {
 	constructor(props) {
 		super(props);
+		this.icons = {
+			//Step 2
+			up: require('./images/disclosure.png'),
+			down: require('./images/disclosure.png')
+		};
 
 		this.state = {
 			//Step 3
 			title: props.title,
-			expanded: true
+			expanded: false
 		};
 	}
 
-	toggle() {}
+	toggle() {
+		this.setState({
+			expanded: !this.state.expanded //Step 2
+		});
+	}
 
 	render() {
 		//Step 5
@@ -20,10 +30,10 @@ class ExpandableListView extends Component {
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>{this.state.title}</Text>
 					<TouchableHighlight style={styles.button} onPress={this.toggle.bind(this)} underlayColor="#f1f1f1">
-						<Text style={styles.buttonImage}>uuupp</Text>
+						<Image style={styles.buttonImage} source={this.icons.up} />
 					</TouchableHighlight>
 				</View>
-				<View style={styles.body}>{this.props.children}</View>
+				{this.state.expanded && <View style={styles.body}>{this.props.children}</View>}
 			</View>
 		);
 	}
@@ -46,11 +56,12 @@ const styles = StyleSheet.create({
 	button: {},
 	buttonImage: {
 		width: 30,
-		height: 25
+		height: 25,
+		resizeMode: 'center',
+		transform: [{ rotate: '180deg' }]
 	},
 	body: {
 		padding: 10,
 		paddingTop: 0
 	}
 });
-export default ExpandableListView;
