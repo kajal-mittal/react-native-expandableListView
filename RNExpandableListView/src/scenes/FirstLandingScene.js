@@ -15,12 +15,12 @@ export default class FirstLandingScene extends Component {
 				</TouchableOpacity>
 
 				<TouchableOpacity
-					style={{ backgroundColor: 'blue' }}
+					style={{ backgroundColor: 'blue', margin: 30 }}
 					onPress={() => {
 						this.props.navigation.navigate('App');
 					}}
 				>
-					<Text style={{ backgroundColor: 'blue', color: 'white', padding: 10 }}>Expand one Item,other closed</Text>
+					<Text style={{ backgroundColor: 'blue', color: 'white', padding: 10 }}>Section List</Text>
 				</TouchableOpacity>
 				<TouchableOpacity
 					style={{ backgroundColor: 'blue', margin: 30 }}

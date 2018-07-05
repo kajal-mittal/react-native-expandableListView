@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import FirstLandingScene from './FirstLandingScene';
-import App from './App';
-import ExpandableListScene from './ExpandableListScene';
-import ListViewScene from './ListViewScene';
+import FirstLandingScene from './src/scenes/FirstLandingScene';
+import App from './src/scenes/App';
+import ExpandableListScene from './src/scenes/ExpandableListScene';
+import ListViewScene from './src/scenes/ListViewScene';
 
 const AppFlow = StackNavigator({
 	FirstLandingScene: { screen: FirstLandingScene },

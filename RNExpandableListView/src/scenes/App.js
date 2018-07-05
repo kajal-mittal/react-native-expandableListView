@@ -6,14 +6,12 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, SectionList, TouchableOpacity, Alert } from 'react-native';
-import ItemCellRoot from './ItemCellRoot';
 const DATA = [
 	{ title: 'Title1', index: 1, data: ['item1', 'item2'] },
 	{ title: 'Title2', index: 2, data: ['item3', 'item4'] },
 	{ title: 'Title3', index: 3, data: ['item5', 'item6'] }
 ];
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
 	constructor(props) {
 		super(props);
 
@@ -36,33 +34,18 @@ export default class App extends Component<Props> {
 	render() {
 		return (
 			<View style={styles.container}>
-				<View style={{ height: '50%' }}>
-					<SectionList
-						renderItem={({ item, section: { title, index } }) => (
-							<View>
-								{this.state.expand &&
-									this.state.id === index && <Text style={styles.itemStyle}>{item + ' ' + index + title}</Text>}
-							</View>
-						)}
-						renderSectionHeader={({ section: { title, index } }) => (
-							<TouchableOpacity onPress={this.getSectionListItem.bind(this, title, index)}>
-								<Text style={styles.sectionHeaderStyle}>{title}</Text>
-							</TouchableOpacity>
-						)}
-						sections={DATA}
-						keyExtractor={(item, index) => item + index}
-					/>
-				</View>
-				<View style={{ height: '50%' }}>
-					<SectionList
-						renderItem={({ item, section: { title, index } }) => (
-							<ItemCellRoot data={item} sections={title} index={index} />
-						)}
-						renderSectionHeader={({ item, section: { title, index } }) => <View />}
-						sections={DATA}
-						keyExtractor={(item, index) => item + index}
-					/>
-				</View>
+				<SectionList
+					renderItem={({ item, section: { title, index } }) => (
+						<View>{this.state.expand && this.state.id === index && <Text style={styles.itemStyle}>{item}</Text>}</View>
+					)}
+					renderSectionHeader={({ section: { title, index } }) => (
+						<TouchableOpacity onPress={this.getSectionListItem.bind(this, title, index)}>
+							<Text style={styles.sectionHeaderStyle}>{title}</Text>
+						</TouchableOpacity>
+					)}
+					sections={DATA}
+					keyExtractor={(item, index) => item + index}
+				/>
 			</View>
 		);
 	}
