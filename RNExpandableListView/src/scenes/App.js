@@ -6,7 +6,6 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, SectionList, TouchableOpacity, Alert } from 'react-native';
-import ItemCellRoot from './ItemCellRoot';
 const DATA = [
 	{ title: 'Title1', index: 1, data: ['item1', 'item2'] },
 	{ title: 'Title2', index: 2, data: ['item3', 'item4'] },

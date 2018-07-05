@@ -6,8 +6,8 @@ export default class ExpandableListView extends Component {
 		super(props);
 		this.icons = {
 			//Step 2
-			up: require('./images/disclosureUp.png'),
-			down: require('./images/disclosure.png')
+			up: require('../../images/disclosureUp.png'),
+			down: require('../../images/disclosure.png')
 		};
 
 		this.state = {
