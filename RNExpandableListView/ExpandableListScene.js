@@ -10,18 +10,10 @@ const DATA = [
 ];
 export default class ExpandableListScene extends Component {
 	render() {
-		return (
-			<ScrollView style={{ flex: 1 }}>
-				<View style={{ flex: 1, backgroundColor: 'yellow' }}>
-					<Text>kajal</Text>
-					{this.renderList()}
-				</View>
-			</ScrollView>
-		);
+		return <ScrollView style={{ flex: 1 }}>{this.renderList()}</ScrollView>;
 	}
 	renderList = () => {
 		let list = [];
-
 		for (let d of DATA) {
 			list.push(
 				<ExpandableListView title={d.title}>

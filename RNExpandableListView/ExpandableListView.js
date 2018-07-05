@@ -6,7 +6,7 @@ export default class ExpandableListView extends Component {
 		super(props);
 		this.icons = {
 			//Step 2
-			up: require('./images/disclosure.png'),
+			up: require('./images/disclosureUp.png'),
 			down: require('./images/disclosure.png')
 		};
 
@@ -30,7 +30,7 @@ export default class ExpandableListView extends Component {
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>{this.state.title}</Text>
 					<TouchableHighlight style={styles.button} onPress={this.toggle.bind(this)} underlayColor="#f1f1f1">
-						<Image style={styles.buttonImage} source={this.icons.up} />
+						<Image style={styles.buttonImage} source={this.state.expanded ? this.icons.down : this.icons.up} />
 					</TouchableHighlight>
 				</View>
 				{this.state.expanded && <View style={styles.body}>{this.props.children}</View>}
