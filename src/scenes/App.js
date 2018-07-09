@@ -54,7 +54,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		marginTop: 60,
+		margin: 40,
 		backgroundColor: '#F5FCFF'
 	},
 	sectionHeaderStyle: {

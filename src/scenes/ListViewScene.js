@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, ListView, Button } from 'react-native';
+import ItemCellRoot from '../../ItemCellRoot';
 const DATA = [
-	{ title: 'Title1', index: 0, description: ['qeowwruru ipsum dolor sit amet, consectetur adipiscing elit'] },
-	{ title: 'Title2', index: 1, description: ['qeowwruru ipsum dolor sit amet, consectetur adipiscing elit'] },
-	{ title: 'Title3', index: 2 },
-	{ title: 'Title4', index: 3, description: ['qeowwruru ipsum dolor sit amet, consectetur adipiscing elit'] },
-	{ title: 'Title5', index: 4, description: ['ieskjsc ipsum dolor sit amet, consectetur adipiscing elit'] },
-	{ title: 'Title6', index: 5 },
-	{ title: 'Title7', index: 6 },
-	{ title: 'Title8', index: 7 }
+	{
+		title: 'Title1',
+		index: 0,
+		description: 'qeowwruru ipsum dolor sit amet, consectetur adipiscing elit'
+	},
+	{
+		title: 'Title2',
+		index: 1,
+		description: 'qeowwruru ipsum dolor sit amet, consectetur adipiscing elit'
+	}
 ];
 
 export default class ListViewScene extends Component {
@@ -34,8 +37,8 @@ export default class ListViewScene extends Component {
 		return <Text style={{ backgroundColor: 'blue', fontSize: 30, padding: 10 }}>{val}</Text>;
 	}
 
-	renderRow(rowData) {
-		return <View>{this.renderView(rowData)}</View>;
+	renderRow(data) {
+		return <ItemCellRoot data={data} />;
 	}
 	renderView = rowData => {
 		let row = [];
